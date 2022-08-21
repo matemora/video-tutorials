@@ -1,4 +1,7 @@
 import packageJson from '../package.json';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 function requireFromEnv(key: string) {
   if (!process.env[key]) {
