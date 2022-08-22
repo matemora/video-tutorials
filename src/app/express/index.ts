@@ -1,13 +1,16 @@
-import express from 'express';
+import express, { Router } from 'express';
 import { join } from 'path';
 import { ENV } from '../../env';
 
 import mountMiddleware from './mount-middleware';
-// import mountRoutes from './mount-routes';
+import mountRoutes from './mount-routes';
 
 type CreateExpressAppParams = {
   config: {
     env: ENV;
+    homeApp: {
+      router: Router;
+    };
   };
   env: ENV;
 };
@@ -19,7 +22,7 @@ export default function createExpressApp({ config, env }: CreateExpressAppParams
   app.set('view engine', 'pug');
 
   mountMiddleware(app, env);
-  // mountRoutes(app, config);
+  mountRoutes(app, config);
 
   return app
 }
